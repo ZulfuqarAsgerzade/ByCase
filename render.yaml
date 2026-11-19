@@ -1,0 +1,23 @@
+# Render (https://render.com) üçün deploy konfiqurasiyası: pulsuz web servisi.
+#
+# DİQQƏT: pulsuz planda fayl sistemi müvəqqətidir. Admin paneldən edilən dəyişikliklər və yüklənmiş şəkillər
+# yenidən deploy / restart / yatma (15 dəq. trafiksiz) zamanı silinir və sayt nümunə məlumatla başlayır.
+# Bu qurulum müştəriyə göstəriş (demo) üçündür. Real sayt üçün daimi disk (ödənişli plan) lazımdır.
+services:
+  - type: web
+    name: bycase
+    runtime: node
+    plan: free
+    region: frankfurt
+    buildCommand: npm install --include=dev && npm run build
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      # Admin panelə giriş parolu: Render-də deploy zamanı özünüz yazırsınız (faylda saxlanmır)
+      - key: ADMIN_PASSWORD
+        sync: false
+      # Sessiya açarı: Render avtomatik təsadüfi dəyər yaradır
+      - key: ADMIN_SESSION_SECRET
+        generateValue: true
