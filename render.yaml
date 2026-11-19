@@ -15,6 +15,9 @@ services:
     envVars:
       - key: NODE_VERSION
         value: "22"
+      # Saytın ünvanı: WhatsApp mesajındakı məhsul linki, robots.txt və sitemap.xml üçün
+      - key: NEXT_PUBLIC_SITE_URL
+        value: https://bycase.onrender.com
       # Admin panelə giriş parolu: Render-də deploy zamanı özünüz yazırsınız (faylda saxlanmır)
       - key: ADMIN_PASSWORD
         sync: false
